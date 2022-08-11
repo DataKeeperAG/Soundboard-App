@@ -1,44 +1,38 @@
 package com.example.soundboard;
-
 import android.os.Bundle;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.soundboard.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
-
     @Override
-    protected void onCreate (Bundle savedInstanceState)
-    {
-        super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_main);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+        setUpToolbar();
+
+        setUpFAB();
+
+    }
+
+    private void setUpToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    private void setUpFAB() {
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make (toolbar,"Hello, world!", Snackbar.LENGTH_SHORT).show ();
-            }
-        });
+        fab.setOnClickListener((view) -> {handleFABClick();});
+    }
+
+    private void handleFABClick() {
+        //TODO what to do when user clicks on fab
+
     }
 
     @Override
@@ -62,6 +56,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
