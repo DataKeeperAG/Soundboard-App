@@ -1,13 +1,8 @@
 package com.example.soundboard;
-
 import android.os.Bundle;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.appcompat.widget.Toolbar;
-
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -37,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleFABClick() {
         //TODO what to do when user clicks on fab
+
     }
 
     @Override
@@ -60,5 +56,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
