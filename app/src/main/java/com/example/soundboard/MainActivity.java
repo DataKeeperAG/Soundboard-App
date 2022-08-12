@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
         setUpToolbar();
 
-        setUpFAB();
+        setUpFAB1();
+
+        setUpFAB2();
 
 //        setupFields();
 
@@ -29,12 +31,22 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void setUpFAB() {
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener((view) -> {handleFABClick();});
+    private void setUpFAB1() {
+        FloatingActionButton fab = findViewById(R.id.fab1);
+        fab.setOnClickListener((view) -> {handleFAB1Click();});
     }
 
-    private void handleFABClick() {
+    private void setUpFAB2() {
+        FloatingActionButton fab = findViewById(R.id.fab2);
+        fab.setOnClickListener((view) -> {handleFAB2Click();});
+    }
+
+    private void handleFAB1Click() {
+        //TODO what to do when user clicks on fab
+
+    }
+
+    private void handleFAB2Click() {
         //TODO what to do when user clicks on fab
 
     }
