@@ -18,6 +18,7 @@
     app:strokeWidth="2dp"
     tools:showIn="@layout/content_main">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -26,35 +27,41 @@
         android:padding="@dimen/fab_margin">
 
 
-
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1" />
+            android:text="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textview1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forest Noise"
-            app:layout_constraintTop_toBottomOf="@+id/button1" />
+            app:layout_constraintTop_toBottomOf="@+id/button1"
+            app:layout_constraintStart_toStartOf="@id/button1"/>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
+
 
             android:text="2"
-            app:layout_constraintStart_toEndOf="@id/button1" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textview2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:text="Water Noise"
-            app:layout_constraintStart_toStartOf="@id/button2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button2" />
 
         <Button
@@ -62,9 +69,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fab_margin"
+            android:text="3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview1"
-            android:text="3" />
+            app:layout_constraintTop_toBottomOf="@id/textview1" />
 
         <TextView
             android:id="@+id/textview3"
@@ -80,14 +87,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
+            android:layout_marginTop="24dp"
+            android:text="4"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/button3"
-            app:layout_constraintTop_toBottomOf="@+id/textview2"
-            android:text="4" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95" />
 
         <TextView
             android:id="@+id/textview4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             app:layout_constraintStart_toStartOf="@id/button4"
             app:layout_constraintTop_toBottomOf="@+id/button4"
             android:text="White Noise" />

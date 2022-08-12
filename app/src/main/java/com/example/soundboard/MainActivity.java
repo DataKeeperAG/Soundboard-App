@@ -1,10 +1,12 @@
 package com.example.soundboard;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setUpToolbar();
 
         setUpFAB();
+
+//        setupFields();
 
     }
 
@@ -34,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         //TODO what to do when user clicks on fab
 
     }
+
+//    private void setupFields() {
+//        View layoutMain = findViewById(R.id.main_activity);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
