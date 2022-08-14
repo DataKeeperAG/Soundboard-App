@@ -31,25 +31,22 @@
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:text="@string/_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textview1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Forest Noise"
-            app:layout_constraintTop_toBottomOf="@+id/button1"
-            app:layout_constraintStart_toStartOf="@id/button1"/>
+            style="@style/textView_style"
+            android:text="@string/forest_noise"
+            app:layout_constraintStart_toStartOf="@id/button1"
+            app:layout_constraintTop_toBottomOf="@+id/button1" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
-            android:text="2"
+            android:text="@string/_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,10 +54,9 @@
 
         <TextView
             android:id="@+id/textview2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textView_style"
             android:layout_marginEnd="8dp"
-            android:text="Water Noise"
+            android:text="@string/water_noise"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button2" />
 
@@ -69,18 +65,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/fab_margin"
-            android:text="3"
+            android:text="@string/_3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textview1" />
 
         <TextView
             android:id="@+id/textview3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textView_style"
             app:layout_constraintStart_toStartOf="@id/button3"
             app:layout_constraintTop_toBottomOf="@+id/button3"
 
-            android:text="Animal Noise" />
+            android:text="@string/animal_noise" />
 
         <Button
             android:id="@+id/button4"
@@ -88,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:layout_marginTop="24dp"
-            android:text="4"
+            android:text="@string/_4"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/button3"
             app:layout_constraintTop_toTopOf="parent"
@@ -96,12 +91,10 @@
 
         <TextView
             android:id="@+id/textview4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
+            style="@style/textView_style"
             app:layout_constraintStart_toStartOf="@id/button4"
             app:layout_constraintTop_toBottomOf="@+id/button4"
-            android:text="White Noise" />
+            android:text="@string/white_noise" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
