@@ -11,5 +11,6 @@
     <string name="white_noise">White Noise</string>
     <string name="pausebutton">PauseButton</string>
     <string name="playbutton">PlayButton</string>
+    <string name="about">About</string>
 
 </resources>

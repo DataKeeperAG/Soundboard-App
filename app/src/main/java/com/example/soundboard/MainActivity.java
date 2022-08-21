@@ -1,4 +1,6 @@
 package com.example.soundboard;
+import static lib.DialogUtils.showInfoDialog;
+
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -73,7 +75,17 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.action_about) {
+            showAbout();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void showAbout() {
+//      dismissSnackBarIfShown();
+        showInfoDialog(MainActivity.this, "About Sound Board",
+                "Greetings from the developers.\nRelax, study, or work to your choice of background sounds.\n" +
+                        "\nCreated by Danny and Eli");
     }
 }
