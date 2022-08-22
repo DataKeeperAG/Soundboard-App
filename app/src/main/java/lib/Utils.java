@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.example.soundboard.R;
 
 
-public class DialogUtils
+public class Utils
 {
     /*
 Night Mode-related helper methods

@@ -12,5 +12,10 @@
     <string name="pausebutton">PauseButton</string>
     <string name="playbutton">PlayButton</string>
     <string name="about">About</string>
+    <string name="dark_mode_key">Dark Mode</string>
+    <string name="display_header">Display</string>
+    <string name="dark_mode_off">Never Use Dark Mode</string>
+    <string name="dark_mode_on">Use Dark Mode [Unless Disabled in Settings]</string>
+    <string name="settings_activity_title">Settings</string>
 
 </resources>

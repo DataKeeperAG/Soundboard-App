@@ -1,7 +1,10 @@
-package com.example.soundboard;
-import static lib.DialogUtils.showInfoDialog;
+package activities;
+import static lib.Utils.showInfoDialog;
 
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.soundboard.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            showSettings();
             return true;
         }
         else if (id == R.id.action_about) {
@@ -87,5 +91,9 @@ public class MainActivity extends AppCompatActivity {
         showInfoDialog(MainActivity.this, "About Sound Board",
                 "Greetings from the developers.\nRelax, study, or work to your choice of background sounds.\n" +
                         "\nCreated by Danny and Eli");
+    }
+    private void showSettings() {
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        startActivity(intent);
     }
 }
