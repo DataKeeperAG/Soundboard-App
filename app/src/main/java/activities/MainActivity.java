@@ -2,6 +2,7 @@ package activities;
 import static lib.Utils.showInfoDialog;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import com.example.soundboard.R;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,9 +30,88 @@ public class MainActivity extends AppCompatActivity {
 
         setUpFAB2();
 
+        final MediaPlayer[] sounds = {MediaPlayer.create(this, R.raw.forest),
+                MediaPlayer.create(this, R.raw.rain),
+                MediaPlayer.create(this, R.raw.cricket),
+                MediaPlayer.create(this, R.raw.white)};
+
+
+        Button forestButton = (Button) findViewById(R.id.button1);
+        Button rainButton = (Button) findViewById(R.id.button2);
+        Button cricketButton = (Button) findViewById(R.id.button3);
+        Button whiteButton = (Button) findViewById(R.id.button4);
+
+
+        forestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sounds[0].setLooping(true);
+                if(sounds[0].isPlaying() || sounds[1].isPlaying()|| sounds[2].isPlaying() || sounds[3].isPlaying()) {
+                    sounds[1].stop();
+                    sounds[2].stop();
+                    sounds[3].stop();
+                    sounds[0].reset();
+                    sounds[0].start();
+                    sounds[0] = MediaPlayer.create(getApplicationContext(), R.raw.forest);
+                }
+                sounds[0].start();
+            }
+        });
+
+        rainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sounds[1].setLooping(true);
+                if (sounds[0].isPlaying() || sounds[1].isPlaying()|| sounds[2].isPlaying() || sounds[3].isPlaying()) {
+                    sounds[0].stop();
+                    sounds[2].stop();
+                    sounds[3].stop();
+                    sounds[1].reset();
+                    sounds[1].start();
+                    sounds[1] = MediaPlayer.create(getApplicationContext(), R.raw.rain);
+                }
+                sounds[1].start();
+            }
+        });
+
+        cricketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sounds[2].setLooping(true);
+                while (sounds[0].isPlaying() || sounds[1].isPlaying()|| sounds[2].isPlaying() || sounds[3].isPlaying()) {
+                    sounds[0].stop();
+                    sounds[1].stop();
+                    sounds[3].stop();
+                    sounds[2].reset();
+                    sounds[2].start();
+                    sounds[2] = MediaPlayer.create(getApplicationContext(), R.raw.cricket);
+                }
+                sounds[2].start();
+
+            }
+        });
+
+        whiteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sounds[3].setLooping(true);
+                while (sounds[0].isPlaying() || sounds[1].isPlaying()|| sounds[2].isPlaying() || sounds[3].isPlaying()) {
+                    sounds[0].stop();
+                    sounds[1].stop();
+                    sounds[2].stop();
+                    sounds[3].reset();
+                    sounds[3].start();
+                    sounds[3] = MediaPlayer.create(getApplicationContext(), R.raw.cricket);
+                }
+                sounds[3].start();
+
+            }
+        });
 //        setupFields();
 
     }
+
+
 
     private void setUpToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -96,4 +178,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(intent);
     }
+
 }
