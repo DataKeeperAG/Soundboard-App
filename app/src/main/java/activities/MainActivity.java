@@ -170,8 +170,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void showAbout() {
 //      dismissSnackBarIfShown();
-        showInfoDialog(MainActivity.this, "About Sound Board",
-                "Greetings from the developers.\nRelax, study, or work to your choice of background sounds.\n" +
+        showInfoDialog(MainActivity.this, "About Soft Sound",
+                "Greetings from the developers.\nRelax, study, or work to your choice of soft background sounds.\n" +
                         "\nCreated by Danny and Eli");
     }
     private void showSettings() {
