@@ -19,6 +19,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.Soundboard.NoActionBar.SplashScreenTheme">
+        <item name="android:background">@drawable/splash_background</item>
+    </style>
+
     <style name="Theme.Soundboard.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="Theme.Soundboard.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
