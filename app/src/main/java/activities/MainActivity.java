@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.soundboard.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
@@ -17,6 +18,56 @@ import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
+    private MediaPlayer[] mSounds;
+    private static final int sNO_PAUSED = -1;
+    private int mCurrentPaused = sNO_PAUSED;
+    private int mCurrentPlaying = sNO_PAUSED;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        setmCurrentPlayingToCurrent();
+
+        // if (mPrefNoBackgroundPlay)
+        //      mSounds[mCurrentPlaying].stop();
+    }
+
+    private void setmCurrentPlayingToCurrent() {
+        for (int i = 0; i < mSounds.length; i++) {
+            if (mSounds[i].isPlaying())
+            {
+                mCurrentPlaying = i;
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        resumeIfWasPlaying();
+    }
+
+    private void resumeIfWasPlaying() {
+        if (mCurrentPlaying != sNO_PAUSED) {
+            mSounds[mCurrentPlaying].start();
+            mSounds[mCurrentPlaying].setLooping(true);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("Currently Paused", mCurrentPaused);
+        outState.putInt("Currently Playing", mCurrentPlaying);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mCurrentPaused = savedInstanceState.getInt("Currently Paused", sNO_PAUSED);
+        mCurrentPlaying = savedInstanceState.getInt("Currently Playing", sNO_PAUSED);
+        resumeIfWasPlaying();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +77,17 @@ public class MainActivity extends AppCompatActivity {
 
         setUpToolbar();
 
-        setUpFAB1();
+        setUpFABPause();
 
-        setUpFAB2();
+        setUpFABPlay();
 
-        final MediaPlayer[] sounds = {MediaPlayer.create(this, R.raw.forest),
-                MediaPlayer.create(this, R.raw.rain),
-                MediaPlayer.create(this, R.raw.cricket),
-                MediaPlayer.create(this, R.raw.white)};
-
+        setSounds();
+    }
+    private void setSounds() {
+        mSounds = new MediaPlayer[]{MediaPlayer.create(this, R.raw.forest),
+                 MediaPlayer.create(this, R.raw.rain),
+                 MediaPlayer.create(this, R.raw.cricket),
+                 MediaPlayer.create(this, R.raw.white)};
 
         Button forestButton = (Button) findViewById(R.id.button1);
         Button rainButton = (Button) findViewById(R.id.button2);
@@ -45,48 +98,48 @@ public class MainActivity extends AppCompatActivity {
         forestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sounds[0].setLooping(true);
-                if(sounds[0].isPlaying() || sounds[1].isPlaying()|| sounds[2].isPlaying() || sounds[3].isPlaying()) {
-                    sounds[1].stop();
-                    sounds[2].stop();
-                    sounds[3].stop();
-                    sounds[0].reset();
-                    sounds[0].start();
-                    sounds[0] = MediaPlayer.create(getApplicationContext(), R.raw.forest);
+                if(mSounds[0].isPlaying() || mSounds[1].isPlaying()|| mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
+                    mSounds[0].setLooping(true);
+                    mSounds[1].stop();
+                    mSounds[2].stop();
+                    mSounds[3].stop();
+                    mSounds[0].reset();
+                    mSounds[0] = MediaPlayer.create(getApplicationContext(), R.raw.forest);
                 }
-                sounds[0].start();
+                mCurrentPaused = sNO_PAUSED;
+                mSounds[0].start();
             }
         });
 
         rainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sounds[1].setLooping(true);
-                if (sounds[0].isPlaying() || sounds[1].isPlaying()|| sounds[2].isPlaying() || sounds[3].isPlaying()) {
-                    sounds[0].stop();
-                    sounds[2].stop();
-                    sounds[3].stop();
-                    sounds[1].reset();
-                    sounds[1].start();
-                    sounds[1] = MediaPlayer.create(getApplicationContext(), R.raw.rain);
+                mSounds[1].setLooping(true);
+                if (mSounds[0].isPlaying() || mSounds[1].isPlaying()|| mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
+                    mSounds[0].stop();
+                    mSounds[2].stop();
+                    mSounds[3].stop();
+                    mSounds[1].reset();
+                    mSounds[1] = MediaPlayer.create(getApplicationContext(), R.raw.rain);
                 }
-                sounds[1].start();
+                mCurrentPaused = sNO_PAUSED;
+                mSounds[1].start();
             }
         });
 
         cricketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sounds[2].setLooping(true);
-                while (sounds[0].isPlaying() || sounds[1].isPlaying()|| sounds[2].isPlaying() || sounds[3].isPlaying()) {
-                    sounds[0].stop();
-                    sounds[1].stop();
-                    sounds[3].stop();
-                    sounds[2].reset();
-                    sounds[2].start();
-                    sounds[2] = MediaPlayer.create(getApplicationContext(), R.raw.cricket);
+                mSounds[2].setLooping(true);
+                if (mSounds[0].isPlaying() || mSounds[1].isPlaying()|| mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
+                    mSounds[0].stop();
+                    mSounds[1].stop();
+                    mSounds[3].stop();
+                    mSounds[2].reset();
+                    mSounds[2] = MediaPlayer.create(getApplicationContext(), R.raw.cricket);
                 }
-                sounds[2].start();
+                mCurrentPaused = sNO_PAUSED;
+                mSounds[2].start();
 
             }
         });
@@ -94,20 +147,21 @@ public class MainActivity extends AppCompatActivity {
         whiteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sounds[3].setLooping(true);
-                while (sounds[0].isPlaying() || sounds[1].isPlaying()|| sounds[2].isPlaying() || sounds[3].isPlaying()) {
-                    sounds[0].stop();
-                    sounds[1].stop();
-                    sounds[2].stop();
-                    sounds[3].reset();
-                    sounds[3].start();
-                    sounds[3] = MediaPlayer.create(getApplicationContext(), R.raw.cricket);
+                mSounds[3].setLooping(true);
+                if (mSounds[0].isPlaying() || mSounds[1].isPlaying()|| mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
+                    mSounds[0].stop();
+                    mSounds[1].stop();
+                    mSounds[2].stop();
+                    mSounds[3].reset();
+                    mSounds[3] = MediaPlayer.create(getApplicationContext(), R.raw.white);
                 }
-                sounds[3].start();
+                mCurrentPaused = sNO_PAUSED;
+                mSounds[3].start();
 
             }
         });
-//        setupFields();
+
+
 
     }
 
@@ -118,23 +172,35 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void setUpFAB1() {
-        FloatingActionButton fab = findViewById(R.id.fab1);
-        fab.setOnClickListener((view) -> {handleFAB1Click();});
+    private void setUpFABPause() {
+        FloatingActionButton fab = findViewById(R.id.fab_pause);
+        fab.setOnClickListener((view) -> {handleFABPauseClick();});
     }
 
-    private void setUpFAB2() {
-        FloatingActionButton fab = findViewById(R.id.fab2);
-        fab.setOnClickListener((view) -> {handleFAB2Click();});
+    private void setUpFABPlay() {
+        FloatingActionButton fab = findViewById(R.id.fab_play);
+        fab.setOnClickListener((view) -> {handleFABPlayClick();});
     }
 
-    private void handleFAB1Click() {
-        //TODO what to do when user clicks on fab
+    private void handleFABPauseClick() {
+        for (int i = 0; i < mSounds.length; i++) {
+            if(mSounds[i].isPlaying()) {
+                mSounds[i].pause();
+                mCurrentPaused = i;
+            }
+        }
+//        MediaPlayer sounds1 = sounds[0];
+//       if(sounds[0].isLooping() || sounds[0].isPlaying()) {
 
-    }
+//            sounds1.pause();
 
-    private void handleFAB2Click() {
-        //TODO what to do when user clicks on fab
+        }
+//    }
+
+    private void handleFABPlayClick() {
+        if(mCurrentPaused != -1){
+            mSounds[mCurrentPaused].start();
+        }
 
     }
 
