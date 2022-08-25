@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         setmCurrentPlayingToCurrent();
-
         // if (mPrefNoBackgroundPlay)
         //      mSounds[mCurrentPlaying].stop();
     }
@@ -39,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
                 mCurrentPlaying = i;
             }
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+//        resumeIfWasPlaying();
+         mSounds[mCurrentPlaying].stop();
+
     }
 
     @Override
@@ -68,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         mCurrentPlaying = savedInstanceState.getInt("Currently Playing", sNO_PAUSED);
         resumeIfWasPlaying();
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
