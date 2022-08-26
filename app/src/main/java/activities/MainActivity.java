@@ -1,4 +1,5 @@
 package activities;
+
 import static lib.Utils.showInfoDialog;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,14 +30,11 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         setmCurrentPlayingToCurrent();
 
-        // if (mPrefNoBackgroundPlay)
-        //      mSounds[mCurrentPlaying].stop();
     }
 
     private void setmCurrentPlayingToCurrent() {
         for (int i = 0; i < mSounds.length; i++) {
-            if (mSounds[i].isPlaying())
-            {
+            if (mSounds[i].isPlaying()) {
                 mCurrentPlaying = i;
             }
         }
@@ -83,11 +82,12 @@ public class MainActivity extends AppCompatActivity {
 
         setSounds();
     }
+
     private void setSounds() {
         mSounds = new MediaPlayer[]{MediaPlayer.create(this, R.raw.forest),
-                 MediaPlayer.create(this, R.raw.rain),
-                 MediaPlayer.create(this, R.raw.cricket),
-                 MediaPlayer.create(this, R.raw.white)};
+                MediaPlayer.create(this, R.raw.rain),
+                MediaPlayer.create(this, R.raw.cricket),
+                MediaPlayer.create(this, R.raw.white)};
 
         Button forestButton = (Button) findViewById(R.id.button1);
         Button rainButton = (Button) findViewById(R.id.button2);
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         forestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mSounds[0].isPlaying() || mSounds[1].isPlaying()|| mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
+                if (mSounds[0].isPlaying() || mSounds[1].isPlaying() || mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
                     mSounds[0].setLooping(true);
                     mSounds[1].stop();
                     mSounds[2].stop();
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSounds[1].setLooping(true);
-                if (mSounds[0].isPlaying() || mSounds[1].isPlaying()|| mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
+                if (mSounds[0].isPlaying() || mSounds[1].isPlaying() || mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
                     mSounds[0].stop();
                     mSounds[2].stop();
                     mSounds[3].stop();
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSounds[2].setLooping(true);
-                if (mSounds[0].isPlaying() || mSounds[1].isPlaying()|| mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
+                if (mSounds[0].isPlaying() || mSounds[1].isPlaying() || mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
                     mSounds[0].stop();
                     mSounds[1].stop();
                     mSounds[3].stop();
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mSounds[3].setLooping(true);
-                if (mSounds[0].isPlaying() || mSounds[1].isPlaying()|| mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
+                if (mSounds[0].isPlaying() || mSounds[1].isPlaying() || mSounds[2].isPlaying() || mSounds[3].isPlaying()) {
                     mSounds[0].stop();
                     mSounds[1].stop();
                     mSounds[2].stop();
@@ -162,9 +162,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
     }
-
 
 
     private void setUpToolbar() {
@@ -174,72 +172,63 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpFABPause() {
         FloatingActionButton fab = findViewById(R.id.fab_pause);
-        fab.setOnClickListener((view) -> {handleFABPauseClick();});
+        fab.setOnClickListener((view) -> {
+            handleFABPauseClick();
+        });
     }
 
     private void setUpFABPlay() {
         FloatingActionButton fab = findViewById(R.id.fab_play);
-        fab.setOnClickListener((view) -> {handleFABPlayClick();});
+        fab.setOnClickListener((view) -> {
+            handleFABPlayClick();
+        });
     }
 
     private void handleFABPauseClick() {
         for (int i = 0; i < mSounds.length; i++) {
-            if(mSounds[i].isPlaying()) {
+            if (mSounds[i].isPlaying()) {
                 mSounds[i].pause();
                 mCurrentPaused = i;
             }
         }
-//        MediaPlayer sounds1 = sounds[0];
-//       if(sounds[0].isLooping() || sounds[0].isPlaying()) {
-
-//            sounds1.pause();
-
-        }
-//    }
+    }
 
     private void handleFABPlayClick() {
-        if(mCurrentPaused != -1){
+        if (mCurrentPaused != -1) {
             mSounds[mCurrentPaused].start();
         }
 
     }
 
-//    private void setupFields() {
-//        View layoutMain = findViewById(R.id.main_activity);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             showSettings();
             return true;
-        }
-        else if (id == R.id.action_about) {
+        } else if (id == R.id.action_about) {
             showAbout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
     private void showAbout() {
-//      dismissSnackBarIfShown();
         showInfoDialog(MainActivity.this, "About Soft Sound",
                 "Greetings from the developers.\nRelax, study, or work to your choice of soft background sounds.\n" +
                         "\nCreated by Danny and Eli");
     }
+
     private void showSettings() {
         Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(intent);

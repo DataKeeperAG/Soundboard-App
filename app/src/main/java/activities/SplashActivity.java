@@ -10,11 +10,9 @@ import androidx.preference.PreferenceManager;
 import com.example.soundboard.R;
 
 import lib.Utils;
-//import com.example.thirteen_stones.thirteen_stones.lib.DialogUtils;
 
 
 public class SplashActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -23,8 +21,8 @@ public class SplashActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.root_preferences, false);
         Utils.setNightModeOnOffFromPreferenceValue(getApplicationContext(), getString(R.string.dark_mode_key));
 
-        startActivity (new Intent(getApplicationContext (), MainActivity.class));
-        finish ();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
 
     }
 

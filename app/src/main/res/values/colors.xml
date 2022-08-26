@@ -10,10 +10,8 @@
     <color name="secondaryTextColor">#000000</color>
 
     <color name="colorDefaultBackground">@color/cardview_dark_background</color>
-    <!-- For colored text; default is black/dark-gray (Day) or
-white/light-gray (Night) -->
+
     <color name="colorPrimaryTextColored">@color/primaryLightColor</color>
     <color name="colorSecondaryTextColored">@color/primaryColor</color>
-    <!-- Matching colored background -->
     <color name="colorBackgroundColored">@color/primaryDarkColor</color>
 </resources>
